@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>San Jose Weather</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #eef4fa;
+      color: #1d2a36;
+    }
+    main { text-align: center; }
+    h1 { font-size: 1.5rem; font-weight: 600; }
+    .temp { font-size: 4rem; margin: 0.25rem 0; }
+    .desc { font-size: 1.25rem; }
+    .error { color: #a12a2a; }
+    a { color: #1d5fa0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>San Jose, California</h1>
+    {% if weather %}
+      <p class="temp">{{ weather.temperature }}&deg;F</p>
+      <p class="desc">{{ weather.description }}</p>
+    {% else %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    <p><a href="{{ url_for('zip_lookup') }}">Look up weather by zip code</a></p>
+  </main>
+</body>
+</html>

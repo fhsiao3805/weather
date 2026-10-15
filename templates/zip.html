@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather by Zip Code</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #eef4fa;
+      color: #1d2a36;
+    }
+    main { text-align: center; }
+    h1 { font-size: 1.5rem; font-weight: 600; }
+    form { margin-bottom: 1.5rem; }
+    input, button { font: inherit; padding: 0.4rem 0.6rem; }
+    .temp { font-size: 4rem; margin: 0.25rem 0; }
+    .desc { font-size: 1.25rem; }
+    .error { color: #a12a2a; }
+    a { color: #1d5fa0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Weather by Zip Code</h1>
+    <form method="post">
+      <label for="zip">US zip code</label>
+      <input id="zip" name="zip" value="{{ zip_code }}" inputmode="numeric"
+             pattern="[0-9]{5}" maxlength="5" required autofocus>
+      <button type="submit">Get weather</button>
+    </form>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% elif weather %}
+      <h2>{{ place.name }}</h2>
+      <p class="temp">{{ weather.temperature }}&deg;F</p>
+      <p class="desc">{{ weather.description }}</p>
+    {% endif %}
+    <p><a href="{{ url_for('index') }}">Back to San Jose</a></p>
+  </main>
+</body>
+</html>
